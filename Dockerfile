@@ -3,14 +3,13 @@ FROM 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:6839-main
 RUN apt-get update &&\
     apt-get install -y curl
 
-# Get miniconda
-# RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh --output miniconda.sh
-# ENV CONDA_DIR /opt/conda
-# RUN bash miniconda.sh -b -p /opt/conda
-# ENV PATH=$CONDA_DIR/bin:$PATH
-
-# Get Mamba
-# RUN conda install -y mamba -n base -c conda-forge
+# Get Bracken
+RUN curl -L \
+    https://github.com/jenniferlu717/Bracken/archive/refs/tags/v2.8.tar.gz \
+    -o bracken.tar.gz &&\
+    tar -xvf bracken.tar.gz &&\
+    cd Bracken-2.8 &&\
+    sh install_bracken.sh
 
 # STOP HERE:
 # The following lines are needed to ensure your build environement works
